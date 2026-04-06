@@ -33,16 +33,17 @@ class _ItemListWidgetState extends State<ItemListWidget> {
           );
         }
 
-        return ListView.builder(
-          itemCount: items.length,
-          itemBuilder: (context, index) {
-            final item = items[index];
-            return ItemTile(
-              item: item,
-              service: widget.service,
-              onDelete: () => _deleteItem(item.id),
-            );
-          },
+        return SingleChildScrollView(
+          child: Column(
+            children: List.generate(items.length, (index) {
+              final item = items[index];
+              return ItemTile(
+                item: item,
+                service: widget.service,
+                onDelete: () => _deleteItem(item.id),
+              );
+            }),
+          ),
         );
       },
     );
